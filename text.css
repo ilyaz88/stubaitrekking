@@ -1,0 +1,83 @@
+/* текскт */
+p, ol, dl {
+   font-size: large;
+   font-family: Times New Roman;
+}
+
+p.note {
+    margin: 25 px;
+    font-style: italic;
+}
+
+p.page_note {
+    font-size: medium;
+    text-align: right;
+    margin: 0;
+}
+
+li.local_index {
+    list-style: none;
+}
+
+/* таблицы */
+caption, p.img{    
+    font-family: inherent;
+    font-size: medium;
+    font-style: italic;
+    caption-side: bottom;    
+}
+
+table {    
+    border-width: thin;
+    border-color: black;
+    border-style: solid;
+    border-collapse: collapse;
+    border-width: thin;
+    margin: auto;    
+}
+
+th {
+    text-align: center;
+    font-family: inherent;
+    font-size: medium;
+    background-color: #E8E8E8;    
+    border-width: thin;
+    border-color: black;
+    border-style: solid;
+    border-collapse: collapse;
+    border-width: thin;
+    padding-left: 4pt;
+    padding-right: 4pt;
+    padding-top: 2pt;
+    padding-bottom: 2pt;
+}
+
+td {
+    text-align: left;
+    border-width: thin;
+    border-color: black;
+    border-style: solid;
+    border-collapse: collapse;
+    border-width: thin;
+    padding-left: 4pt;
+    padding-right: 4pt;
+    padding-top: 2pt;
+    padding-bottom: 2pt;
+}
+
+td.number {
+    text-align: right;
+}
+
+/* рисунки */
+img.browser {
+    width: 500px;    
+}
+
+img.printer {
+    width: 15cm;    
+}
+
+p.img{    
+    text-align: center;
+}

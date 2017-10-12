@@ -1,0 +1,41 @@
+.container {
+    max-width: 1045px;
+    min-width: 800px;
+    background-color: #EFEFEF;
+    margin: 0 auto;    
+}
+
+body {
+    background-color: #CCCCCC;
+    padding: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+.menu {
+    float: left;
+    width: 230px;    
+    background-color: #20B2AA;
+    padding-top: 10px;
+}
+
+.content {
+    margin-left: 230px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    background-color: #FFFFFF;    
+}
+
+.footer {
+    background: #8fa09b;
+    clear: left;
+    padding: 5px;
+    text-align: right;
+}
+
+.header {
+    background: #FFFFFF;
+    color: #000;
+}
