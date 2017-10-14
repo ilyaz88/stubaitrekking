@@ -2,8 +2,8 @@
 .menu_item, .selected_menu_item, .submenu_item, .selected_submenu_item {
     background-color: #20B2AA;
     color: #FFFFFF;
-    font-family: Arial; /* font-family: имя шрифта [, имя шрифта[, ...]] | inherit */
-    font-size: 14pt;
+    /* font-family: Arial; font-family: имя шрифта [, имя шрифта[, ...]] | inherit */
+    font-size: medium;
     font-style: normal; /* font-style: normal (прямой) | italic (курсив) | oblique (наклонный) | inherit (как у родителя) */
     font-variant: normal; /* normal | small-caps (капитель) | inherit (как у родителя) */
     list-style-type: none;

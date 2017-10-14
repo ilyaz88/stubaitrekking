@@ -1,7 +1,7 @@
 /* текскт */
 p, ol, ul {
-   font-size: large;
-   font-family: Times New Roman;
+   font-size: medium;
+   /*font-family: 'Roboto';*/
 }
 
 p.note {
@@ -38,11 +38,11 @@ table {
 
 th {
     text-align: center;
-    font-family: inherent;
+    font-family: 'Roboto';
     font-size: medium;
-    background-color: #E8E8E8;    
+    background-color: #222;    
     border-width: thin;
-    border-color: black;
+    border-color: white;
     border-style: solid;
     border-collapse: collapse;
     border-width: thin;
@@ -50,6 +50,16 @@ th {
     padding-right: 4pt;
     padding-top: 2pt;
     padding-bottom: 2pt;
+    color: #CCC;
+    border-top-color: black;
+}
+
+th:first-child {
+    border-left-color: black;
+}
+
+th:last-child {
+    border-right-color: black;
 }
 
 td {

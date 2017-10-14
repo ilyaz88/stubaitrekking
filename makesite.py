@@ -83,7 +83,7 @@ for menu_index in range(0, len(menu)):
             print('i can\'t find menu item name in %s'%sourse_name)
         menu_items[menu_index].append(menu_name);
 
-copyright = 'stubaitrip.ru, 2017 г., write to ilzu1 post box on yandex.ru mail server';
+copyright = 'stubaitrekking.ru, 2017 г., write to `admin` post box at this (`stubaitrekking.ru`) server';
 
 p = open('pattern.browser.html', 'r', encoding = 'utf-8');
 pattern = p.read();
