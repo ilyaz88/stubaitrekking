@@ -71,7 +71,7 @@ def GenerateMenu(active_menu_indexes):
         text = text + DrawMenuItem(menu_index);
     return text;    
 
-menu = [['about'], ['proviant', 'proviant_info', 'daily_menue'], ['route', 'path_classification', 'signalgipfel', 'grosser', 'gamsspitzl', 'beiljoch'], ['tirol_transport', 'transport']];
+menu = [['about'], ['proviant', 'proviant_info', 'daily_menue'], ['route', 'path_classification', 'signalgipfel', 'grosser', 'gamsspitzl', 'beiljoch'], ['tirol_transport', 'transport', 'passage']];
 menu_items = [];
 
 for menu_index in range(0, len(menu)):
