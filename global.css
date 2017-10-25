@@ -1,48 +1,57 @@
 .container {
-    max-width: 1045px;
-    min-width: 800px;
-    background-color: /*#EFEFEF*/ #20B2AA;
-    margin: 0 auto;    
+    width: 1170;
+    background-color: white;
+    margin: 0 auto;
 }
 
 body {
-    background-color: #CCCCCC;
+    background-color: white;
     padding: 0px;
-    /*
-    margin-left: 0px;
-    margin-right: 0px;
-    */
     font-family: 'Roboto';
-    margin: 0;    
+    margin: 0;
 }
 
 .menu {
     float: left;
     position: fixed;
-    width: 230px;    
-    background-color: #20B2AA;
-    padding-top: 10px;
+    width: 225px;    
+    background-color: white;
+    margin-top: 12px;
+    /*padding-top: 10px;*/
 }
 
 .content {
-    margin-left: 230px;
-    padding-left: 20px;
+    border-top-width: 6px;
+    border-top-style: solid;
+    border-top-color: #20b2aa;
+    margin-top: 0px;
+    padding-left: 278px;
     padding-right: 20px;
     padding-bottom: 10px;
     padding-top: 10px;
-    background-color: #FFFFFF;    
+    background-color: white;
 }
 
 .footer {
-    background: #8fa09b;
+    background: white;
     clear: left;
-    padding: 5px;
+    padding-right: 20px;
     text-align: right;
+    margin-top: 6px;
+    border-top-width: 6px;
+    border-top-style: solid;
+    border-top-color: #20b2aa;
+    color: #999;
+    font-size: small;
 }
 
 .header {
-    background: #FFFFFF;
+    background: #20b2aa;
+    height: 95px;
     color: #000;
+    text-align: center;
+    padding-top: 3px;
+    margin-bottom: 6px;
 }
 
 html {

@@ -41,10 +41,10 @@ def DrawActiveSubmenuItem(menu_index, submenu_index):
     return '<div class = \'selected_submenu_item\'>%s</div>\n'%(menu_items[menu_index][submenu_index]);
     
 def DrawMenuItem(menu_index):
-    return '<div class = \'menu_item\'><a href = \'%s\'>%s</a></div>\n'%(WebpageNameGenerator(menu[menu_index][0]), menu_items[menu_index][0]);
+    return '<div class = \'menu_item\'><a class = "item" href = \'%s\'>%s</a></div>\n'%(WebpageNameGenerator(menu[menu_index][0]), menu_items[menu_index][0]);
     
 def DrawSubmenuItem(menu_index, submenu_index):
-    return '<div class = \'submenu_item\'><a href = \'%s\'>%s</a></div>\n'%(WebpageNameGenerator(menu[menu_index][submenu_index]), menu_items[menu_index][submenu_index]);
+    return '<div class = \'submenu_item\'><a class = "item" href = \'%s\'>%s</a></div>\n'%(WebpageNameGenerator(menu[menu_index][submenu_index]), menu_items[menu_index][submenu_index]);
     
 def GenerateMenu(active_menu_indexes):
     text = '';
