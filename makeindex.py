@@ -23,7 +23,12 @@ class LocalIndex:
                 return (-1, '');
         header = self.origin_file[self.origin_file_position:closing_tag_position];
         self.output_file = self.output_file + '<a name = \'index%05d\'></a>'%(self.next_index_nomber);
-        self.GoToNextFilePosition(closing_tag_position + len(looked_for_tag));
+        if self.top_link:
+            self.GoToNextFilePosition(closing_tag_position);
+            self.output_file = self.output_file + '<div style = "float: right; font-size: small">[<a href = "#">к оглавлению</a>]</div>';
+            self.GoToNextFilePosition(closing_tag_position + len(looked_for_tag));
+        else:
+            self.GoToNextFilePosition(closing_tag_position + len(looked_for_tag));
         return (0, header)
         
     def LookForHeader(self):
@@ -65,7 +70,7 @@ class LocalIndex:
             self.DecreaseHeaderLevel(next_header_grade);
             self.AddLocalRef(header);
 
-    def __init__(self, origin_file = ''):
+    def __init__(self, origin_file = '', top_link = False):
         self.error_status = 0;
         self.index_tag = '<!paste_index_here>';
         self.headerses_garde = {
@@ -87,6 +92,7 @@ class LocalIndex:
         self.next_index_nomber = 0;
         self.index = '';
         self.output_file = '';
+        self.top_link = top_link;
         
     def Do(self):
         index_paste_position = self.origin_file.find(self.index_tag);
@@ -99,9 +105,9 @@ class LocalIndex:
         output_file = output_file + self.output_file[index_paste_position + len(self.index_tag):];
         return status, output_file, self.index;
         
-def MakeIndex(file):
+def MakeIndex(file, top_link = False):
     output_file = WriteLabels(file);    
-    status, output_file, index = LocalIndex(output_file).Do();
+    status, output_file, index = LocalIndex(output_file, top_link).Do();
     if status < 0:
         print('an error occured during index construction');
     return output_file

@@ -8,9 +8,9 @@ def ExtractMenuItem(sourse_name):
     p.close();
     return status, menu_name
     
-def ExtractPageInfo(sourse_name):
+def ExtractPageInfo(sourse_name, top_link = False):
     p = open(sourse_name, 'r', encoding = 'utf-8');
-    text = MakeIndex(p.read());
+    text = MakeIndex(p.read(), top_link);
     (_, _, _, title) = search4tag(text, 'title', '/title').FindTagPair();
     (_, _, _, body) = search4tag(text, 'body', '/body').FindTagPair();    
     p.close();
@@ -45,9 +45,16 @@ def DrawMenuItem(menu_index):
     
 def DrawSubmenuItem(menu_index, submenu_index):
     return '<div class = \'submenu_item\'><a class = "item" href = \'%s\'>%s</a></div>\n'%(WebpageNameGenerator(menu[menu_index][submenu_index]), menu_items[menu_index][submenu_index]);
-    
+
+def PrintWersionLinkGenerator(print_version_name):
+    return '[<a href = "%s">Версия для печати</a>]'%(print_version_name)
+
 def GenerateMenu(active_menu_indexes):
     text = '';
+    if active_menu_indexes[0] < 0:
+        for menu_index in range(0, len(menu)):
+            text = text + DrawMenuItem(menu_index);
+        return text;
     if active_menu_indexes[1] == 0:
         active_menu_index = active_menu_indexes[0];
         for menu_index in range(0, active_menu_index):
@@ -71,7 +78,7 @@ def GenerateMenu(active_menu_indexes):
         text = text + DrawMenuItem(menu_index);
     return text;    
 
-menu = [['about'], ['stubai'], ['proviant', 'proviant_info', 'daily_menue', 'recipe'], ['route', 'path_classification', 'signalgipfel', 'grosser', 'gamsspitzl', 'beiljoch'], ['tirol_transport', 'transport', 'passage'], ['equipment', 'gas']];
+menu = [['stubai'], ['proviant', 'proviant_info', 'daily_menue', 'recipe'], ['route', 'path_classification', 'signalgipfel', 'grosser', 'gamsspitzl', 'beiljoch'], ['tirol_transport', 'transport', 'passage'], ['equipment', 'gas']];
 menu_items = [];
 
 for menu_index in range(0, len(menu)):
@@ -89,16 +96,37 @@ p = open('pattern.browser.html', 'r', encoding = 'utf-8');
 pattern = p.read();
 p.close();
         
+def PageProcess(sourse_name, page_name, print_name, menu_indexes):
+    title, text = ExtractPageInfo(sourse_name, top_link = True);
+    p = open(page_name, 'w', encoding = 'utf-8');
+    resulted_text = TagSubstitute(pattern, '!title', title);
+    resulted_text = TagSubstitute(resulted_text, '!menu', GenerateMenu(menu_indexes));
+    resulted_text = TagSubstitute(resulted_text, '!text', text);
+    resulted_text = TagSubstitute(resulted_text, '!copyright', copyright);
+    if (len(print_name) > 0):
+        resulted_text = TagSubstitute(resulted_text, '!print_version_link', PrintWersionLinkGenerator(print_name));
+    p.write(resulted_text)
+    p.close();
+
+p = open('pattern.printer.html', 'r', encoding = 'utf-8');
+printer_pattern = p.read();
+p.close();    
+
+def PrintPageProcess(sourse_name, page_name, menu_indexes):
+    title, text = ExtractPageInfo(sourse_name);
+    p = open(page_name, 'w', encoding = 'utf-8');
+    resulted_text = TagSubstitute(printer_pattern, '!title', title);
+    resulted_text = TagSubstitute(resulted_text, '!text', text);
+    resulted_text = TagSubstitute(resulted_text, '!copyright', copyright);
+    p.write(resulted_text)
+    p.close();
+
 for menu_index in range(0, len(menu)):    
     for sub_menu_index in range(0, len(menu[menu_index])):
         name = menu[menu_index][sub_menu_index];
         print('%s processing...'%name)
-        title, text = ExtractPageInfo(SourseNameGenerator(name));
-        p = open(WebpageNameGenerator(name), 'w', encoding = 'utf-8');
-        resulted_text = TagSubstitute(pattern, '!title', title);
-        resulted_text = TagSubstitute(resulted_text, '!menu', GenerateMenu([menu_index, sub_menu_index]));
-        resulted_text = TagSubstitute(resulted_text, '!text', text);
-        resulted_text = TagSubstitute(resulted_text, '!copyright', copyright);
-        p.write(resulted_text)
-        p.close();
+        PageProcess(SourseNameGenerator(name), WebpageNameGenerator(name), PrintNameGenerator(name), [menu_index, sub_menu_index]);
+        PrintPageProcess(SourseNameGenerator(name), PrintNameGenerator(name), [menu_index, sub_menu_index]);
         print('%s processed'%name)
+
+PageProcess('protoindex.html', 'index.html', '', [-1, -1]);

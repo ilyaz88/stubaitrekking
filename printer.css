@@ -1,19 +1,34 @@
+body {
+    background-color: white;
+    font-family: Times New Roman;
+}
+
+
+.footer {
+    background: white;
+    text-align: right;
+    border-top-width: 2pt;
+    border-top-style: solid;
+    border-top-color: black;
+    color: black;
+    font-size: small;
+    margin-top: 12pt;
+}
+
 /* текскт */
 p, ol, ul {
    font-size: medium;
-   /*font-family: 'Roboto';*/
 }
 
 p.note {
-    margin: 25 px;
+    margin: 18 pt;
     font-style: italic;
 }
 
 p.page_note {
-    font-size: small;
+    font-size: medium;
     text-align: right;
     margin: 0;
-    padding: 0;
 }
 
 li.local_index {
@@ -39,11 +54,8 @@ table {
 
 th {
     text-align: center;
-    font-family: 'Roboto';
-    font-size: medium;
-    background-color: #222;    
     border-width: thin;
-    border-color: white;
+    border-color: black;
     border-style: solid;
     border-collapse: collapse;
     border-width: thin;
@@ -51,16 +63,7 @@ th {
     padding-right: 4pt;
     padding-top: 2pt;
     padding-bottom: 2pt;
-    color: #CCC;
-    border-top-color: black;
-}
-
-th:first-child {
-    border-left-color: black;
-}
-
-th:last-child {
-    border-right-color: black;
+    color: black;
 }
 
 td {
@@ -82,14 +85,9 @@ td.number {
 
 /* рисунки */
 img.browser {
-    width: 500px;    
-}
-
-img.printer {
     width: 15cm;    
 }
 
 p.img{    
     text-align: center;
 }
-
