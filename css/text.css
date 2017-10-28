@@ -81,8 +81,15 @@ td.number {
 }
 
 /* рисунки */
-img.browser {
-    width: 730px;    
+img.wide {
+    width: 730px;
+}
+
+img.tight{
+    width: 500px;
+}
+
+img.default{;
 }
 
 img.printer {

@@ -25,8 +25,8 @@ body {
     border-top-style: solid;
     border-top-color: #20b2aa;
     margin-top: 0px;
-    padding-left: 245px;
-    padding-right: 20px;
+    padding-left: 275px;
+    padding-right: 10px;
     padding-bottom: 10px;
     padding-top: 10px;
     background-color: white;
@@ -57,4 +57,11 @@ body {
 html {
     margin: 0;
     padding: 0;
+}
+
+.proclamation {
+    float: left;
+    width: 294px;
+    padding-right: 11px;
+    margin: 0;
 }

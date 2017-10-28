@@ -84,8 +84,15 @@ td.number {
 }
 
 /* рисунки */
-img.browser {
-    width: 15cm;    
+img.wide {
+    width: 15cm;
+}
+
+img.tight{
+    width: 10cm;
+}
+
+img.default{
 }
 
 p.img{    

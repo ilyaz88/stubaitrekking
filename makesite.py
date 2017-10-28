@@ -78,7 +78,7 @@ def GenerateMenu(active_menu_indexes):
         text = text + DrawMenuItem(menu_index);
     return text;    
 
-menu = [['stubai'], ['proviant', 'proviant_info', 'daily_menue', 'recipe'], ['equipment', 'gas'], ['tirol_transport', 'transport', 'passage'], ['route', 'path_classification', 'signalgipfel', 'grosser', 'gamsspitzl', 'beiljoch'], ['money']];
+menu = [['stubai'], ['proviant', 'proviant_info', 'daily_menue', 'recipe'], ['equipment', 'gas'], ['tirol_transport', 'transport', 'passage'], ['route', 'path_classification', 'signalgipfel', 'grosser', 'gamsspitzl', 'beiljoch'], ['money'], ['groupe'], ['links']];
 menu_items = [];
 
 for menu_index in range(0, len(menu)):
@@ -90,13 +90,16 @@ for menu_index in range(0, len(menu)):
             print('i can\'t find menu item name in %s'%sourse_name)
         menu_items[menu_index].append(menu_name);
 
-copyright = 'stubaitrekking.ru, 2017 г., write to `admin` post box at this (`stubaitrekking.ru`) server';
+copyright = 'stubaitrekking.ru, 2017 г., mail to admin@stubaitrekking.ru ';
 
 p = open('pattern.browser.html', 'r', encoding = 'utf-8');
 pattern = p.read();
 p.close();
         
-def PageProcess(sourse_name, page_name, print_name, menu_indexes):
+def PageProcess(pattern_name, sourse_name, page_name, print_name = '', menu_indexes = [-1, -1]):
+    p = open(pattern_name, 'r', encoding = 'utf-8');
+    pattern = p.read();
+    p.close();   
     title, text = ExtractPageInfo(sourse_name, top_link = True);
     p = open(page_name, 'w', encoding = 'utf-8');
     resulted_text = TagSubstitute(pattern, '!title', title);
@@ -108,25 +111,13 @@ def PageProcess(sourse_name, page_name, print_name, menu_indexes):
     p.write(resulted_text)
     p.close();
 
-p = open('pattern.printer.html', 'r', encoding = 'utf-8');
-printer_pattern = p.read();
-p.close();    
-
-def PrintPageProcess(sourse_name, page_name, menu_indexes):
-    title, text = ExtractPageInfo(sourse_name);
-    p = open(page_name, 'w', encoding = 'utf-8');
-    resulted_text = TagSubstitute(printer_pattern, '!title', title);
-    resulted_text = TagSubstitute(resulted_text, '!text', text);
-    resulted_text = TagSubstitute(resulted_text, '!copyright', copyright);
-    p.write(resulted_text)
-    p.close();
 
 for menu_index in range(0, len(menu)):    
     for sub_menu_index in range(0, len(menu[menu_index])):
         name = menu[menu_index][sub_menu_index];
         print('%s processing...'%name)
-        PageProcess(SourseNameGenerator(name), WebpageNameGenerator(name), PrintNameGenerator(name), [menu_index, sub_menu_index]);
-        PrintPageProcess(SourseNameGenerator(name), PrintNameGenerator(name), [menu_index, sub_menu_index]);
+        PageProcess('pattern.browser.html', SourseNameGenerator(name), WebpageNameGenerator(name), PrintNameGenerator(name), [menu_index, sub_menu_index]);
+        PageProcess('pattern.printer.html', SourseNameGenerator(name), PrintNameGenerator(name), '', [menu_index, sub_menu_index]);
         print('%s processed'%name)
 
-PageProcess('protoindex.html', 'index.html', '', [-1, -1]);
+PageProcess('pattern.index.html', 'protoindex.html', 'index.html');

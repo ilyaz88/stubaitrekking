@@ -8,7 +8,7 @@ a.item{
     text-decoration: none;
 }
 
-a.item:visited, a.item:active {
+a.item:visited, a.item:active, a.item:link {
     color: black;
 }
 
