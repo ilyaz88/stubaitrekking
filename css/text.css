@@ -1,0 +1,95 @@
+/* текскт */
+p, ol, ul {
+   font-size: medium;
+   /*font-family: 'Roboto';*/
+}
+
+p.note {
+    margin: 25 px;
+    font-style: italic;
+}
+
+p.page_note {
+    font-size: small;
+    text-align: right;
+    margin: 0;
+    padding: 0;
+}
+
+li.local_index {
+    list-style: none;
+}
+
+/* таблицы */
+caption, p.img{    
+    font-family: inherent;
+    font-size: medium;
+    font-style: italic;
+    caption-side: bottom;    
+}
+
+table {    
+    border-width: thin;
+    border-color: black;
+    border-style: solid;
+    border-collapse: collapse;
+    border-width: thin;
+    margin: auto;    
+}
+
+th {
+    text-align: center;
+    font-family: 'Roboto';
+    font-size: medium;
+    background-color: #222;    
+    border-width: thin;
+    border-color: white;
+    border-style: solid;
+    border-collapse: collapse;
+    border-width: thin;
+    padding-left: 4pt;
+    padding-right: 4pt;
+    padding-top: 2pt;
+    padding-bottom: 2pt;
+    color: #CCC;
+    border-top-color: black;
+}
+
+th:first-child {
+    border-left-color: black;
+}
+
+th:last-child {
+    border-right-color: black;
+}
+
+td {
+    text-align: left;
+    border-width: thin;
+    border-color: black;
+    border-style: solid;
+    border-collapse: collapse;
+    border-width: thin;
+    padding-left: 4pt;
+    padding-right: 4pt;
+    padding-top: 2pt;
+    padding-bottom: 2pt;
+}
+
+td.number {
+    text-align: right;
+}
+
+/* рисунки */
+img.browser {
+    width: 730px;    
+}
+
+img.printer {
+    width: 15cm;    
+}
+
+p.img{    
+    text-align: center;
+}
+

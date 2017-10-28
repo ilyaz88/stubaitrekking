@@ -1,0 +1,41 @@
+/* общие атрибуты для всех пунктов меню */
+.menu_item, .selected_menu_item, .submenu_item, .selected_submenu_item {
+    background-color: white;
+    color: #20b2aa;
+}
+
+a.item{
+    text-decoration: none;
+}
+
+a.item:visited, a.item:active {
+    color: black;
+}
+
+a.item:hover {
+    color: #20b2aa;
+}
+
+/* атрибуты для пунктов меню первого уровня */
+.menu_item, .selected_menu_item{
+    padding-left: 17px; /* http://htmlbook.ru/css/pading-left ширина отступа слева*/
+    padding-top: 12;
+    padding-bottom: 12;
+}
+
+/* активный пункты меню */
+.selected_menu_item, .selected_submenu_item {
+    background-color: #20b2aa;
+    color: white;
+}
+/* атрибуты для пунктов меню второго уровня*/
+.submenu_item, .selected_submenu_item{
+    padding-left: 32px; /* http://htmlbook.ru/css/pading-left ширина отступа слева*/
+    padding-top: 8;
+    padding-bottom: 8;
+}
+
+/* атрибуты для пассивного пункта меню второго уровня */
+.submenu_item {
+    background-color: white;
+}
