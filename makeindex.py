@@ -10,7 +10,7 @@ class LocalIndex:
         self.origin_file_position = next_position;
         
     def AddLocalRef(self, header):
-        self.index = self.index + '<li class = "local_index"><a href = \'#index%05d\'>%s</a></li>\n'%(self.next_index_nomber, header);
+        self.index = self.index + '<li class = "local_index" style = "font-size: small;  line-height: 1.5;"><a href = \'#index%05d\' style = "font-size: small;">%s</a></li>\n'%(self.next_index_nomber, header);
         self.next_index_nomber = self.next_index_nomber + 1;
         
     def SelectHeader(self, looked_header_level):
@@ -25,7 +25,7 @@ class LocalIndex:
         self.output_file = self.output_file + '<a name = \'index%05d\'></a>'%(self.next_index_nomber);
         if self.top_link:
             self.GoToNextFilePosition(closing_tag_position);
-            self.output_file = self.output_file + '<div style = "float: right; font-size: small">[<a href = "#">к оглавлению</a>]</div>';
+            self.output_file = self.output_file + '<div style = "float: right; font-size: small;">[<a href = "#">к оглавлению</a>]</div>';
             self.GoToNextFilePosition(closing_tag_position + len(looked_for_tag));
         else:
             self.GoToNextFilePosition(closing_tag_position + len(looked_for_tag));
@@ -47,7 +47,7 @@ class LocalIndex:
                 
     def IncreaseHeaderLevel(self, target_header_level):
         while self.header_level < target_header_level:
-                self.index = self.index + '<ul>\n';
+                self.index = self.index + '<ul style = "font-size: small; line-height: 1.5;">\n';
                 self.header_level = self.header_level + 1;
     
     def DecreaseHeaderLevel(self, target_header_level):
@@ -56,19 +56,24 @@ class LocalIndex:
                 self.header_level = self.header_level - 1;
     
     def ConstructIndex(self):
+        self.index = '<div style = "font-size: small;">\n'
         while True:
             next_header_grade = self.LookForHeader();
             if 0 == next_header_grade:
-                self.DecreaseHeaderLevel(0)
+                self.DecreaseHeaderLevel(0);
+                self.index = self.index+'</div>\n';
                 return 0;
             if -1 == next_header_grade:
+                self.index = self.index+'</div>\n';
                 return -1;
             status, header = self.SelectHeader(next_header_grade);
             if -1 == status:
+                self.index = self.index+'</div>\n';
                 return -1;
             self.IncreaseHeaderLevel(next_header_grade);
             self.DecreaseHeaderLevel(next_header_grade);
             self.AddLocalRef(header);
+        
 
     def __init__(self, origin_file = '', top_link = False):
         self.error_status = 0;

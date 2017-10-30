@@ -4,6 +4,10 @@ p, ol, ul {
    /*font-family: 'Roboto';*/
 }
 
+p {
+    line-height: 1.5;
+}
+
 p.note {
     margin: 25 px;
     font-style: italic;
@@ -92,11 +96,14 @@ img.tight{
 img.default{;
 }
 
+
 img.printer {
     width: 15cm;    
 }
 
 p.img{    
     text-align: center;
+    padding-top: 18px;
+    padding-bottom: 18px;
 }
 
