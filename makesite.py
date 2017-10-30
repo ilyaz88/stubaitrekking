@@ -90,7 +90,7 @@ for menu_index in range(0, len(menu)):
             print('i can\'t find menu item name in %s'%sourse_name)
         menu_items[menu_index].append(menu_name);
 
-copyright = 'stubaitrekking.ru, 2017 г., mail to admin@stubaitrekking.ru ';
+copyright = 'stubaitrekking.ru, 2017 г., mail to stubaitrekking@yandex.ru ';
 
 p = open('pattern.browser.html', 'r', encoding = 'utf-8');
 pattern = p.read();
