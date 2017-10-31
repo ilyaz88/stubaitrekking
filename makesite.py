@@ -78,7 +78,7 @@ def GenerateMenu(active_menu_indexes):
         text = text + DrawMenuItem(menu_index);
     return text;    
 
-menu = [['stubai'], ['proviant', 'proviant_info', 'daily_menue', 'recipe'], ['equipment', 'gas'], ['tirol_transport', 'transport', 'passage'], ['route', 'path_classification', 'signalgipfel', 'grosser', 'gamsspitzl', 'beiljoch'], ['money'], ['groupe'], ['links']];
+menu = [['stubai'], ['proviant', 'proviant_info', 'daily_menue', 'recipe'], ['equipment', 'gas'], ['tirol_transport', 'transport', 'passage'], ['route', 'path_classification', 'signalgipfel', 'grosser', 'gamsspitzl', 'seescharte', 'beiljoch'], ['money'], ['verona'], ['groupe'], ['links']];
 menu_items = [];
 
 for menu_index in range(0, len(menu)):
@@ -90,7 +90,7 @@ for menu_index in range(0, len(menu)):
             print('i can\'t find menu item name in %s'%sourse_name)
         menu_items[menu_index].append(menu_name);
 
-copyright = 'stubaitrekking.ru, 2017 г., mail to admin@stubaitrekking.ru ';
+copyright = 'stubaitrekking.ru, 2017 г., mail to stubaitrekking@yandex.ru ';
 
 p = open('pattern.browser.html', 'r', encoding = 'utf-8');
 pattern = p.read();
