@@ -4,8 +4,27 @@ p, ol, ul {
    /*font-family: 'Roboto';*/
 }
 
+ul.local_index {
+    font-size: small;
+    line-height: 1.5;
+}
+
+a {
+color: #20b2aa;
+}
+
+a:hover {
+color: #188781;
+}
+
+a:visited {
+color: darkslategray;
+}
+
 p {
     line-height: 1.5;
+    text-align: justify;
+    /*text-indent: 1.5em;*/
 }
 
 p.note {

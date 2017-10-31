@@ -20,6 +20,10 @@ p, ol, ul {
    font-size: medium;
 }
 
+ul.paper_index {
+    font-size: small;    
+}
+
 p.note {
     margin: 18 pt;
     font-style: italic;
