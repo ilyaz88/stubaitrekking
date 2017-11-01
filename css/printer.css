@@ -47,7 +47,7 @@ caption, p.img{
     caption-side: bottom;    
 }
 
-table {    
+table, table.wide_table {    
     border-width: thin;
     border-color: black;
     border-style: solid;
@@ -55,6 +55,11 @@ table {
     border-width: thin;
     margin: auto;    
 }
+
+table.wide_table {
+    width: 100%;
+}
+
 
 th {
     text-align: center;

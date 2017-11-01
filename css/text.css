@@ -9,11 +9,11 @@ ul.local_index {
     line-height: 1.5;
 }
 
-a {
+a, a.to_index,  a.to_index:visited {
 color: #20b2aa;
 }
 
-a:hover {
+a:hover, a.to_index:hover {
 color: #188781;
 }
 
@@ -43,6 +43,10 @@ li.local_index {
     list-style: none;
 }
 
+li.wide_list {
+     line-height: 1.5;
+}
+
 /* таблицы */
 caption, p.img{    
     font-family: inherent;
@@ -51,13 +55,17 @@ caption, p.img{
     caption-side: bottom;    
 }
 
-table {    
+table, table.wide_table {    
     border-width: thin;
     border-color: black;
     border-style: solid;
     border-collapse: collapse;
     border-width: thin;
     margin: auto;    
+}
+
+table.wide_table {
+    width: 100%;
 }
 
 th {

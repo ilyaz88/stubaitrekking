@@ -30,6 +30,7 @@ body {
     padding-bottom: 10px;
     padding-top: 10px;
     background-color: white;
+    min-height:500px;
 }
 
 .footer {

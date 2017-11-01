@@ -23,12 +23,7 @@ class LocalIndex:
                 return (-1, '');
         header = self.origin_file[self.origin_file_position:closing_tag_position];
         self.output_file = self.output_file + '<a name = \'index%05d\'></a>'%(self.next_index_nomber);
-        if self.top_link:
-            self.GoToNextFilePosition(closing_tag_position);
-            self.output_file = self.output_file + '<div style = "float: right; font-size: small;">[<a href = "#">к оглавлению</a>]</div>';
-            self.GoToNextFilePosition(closing_tag_position + len(looked_for_tag));
-        else:
-            self.GoToNextFilePosition(closing_tag_position + len(looked_for_tag));
+        self.GoToNextFilePosition(closing_tag_position + len(looked_for_tag));
         return (0, header)
         
     def LookForHeader(self):
@@ -40,10 +35,13 @@ class LocalIndex:
             next_tag_end = self.origin_file.find('>', next_tag_begin)+1;
             if -1 == next_tag_end:
                 return -1;
-            self.GoToNextFilePosition(next_tag_end);
             tag = self.origin_file[next_tag_begin:next_tag_end];
             if tag in self.headerses_garde:
+                if self.top_link:
+                    self.output_file = self.output_file + '<div style = "float: right; font-size: small;">[<a href = "#" class = "to_index">&emsp;к оглавлению&emsp;</a>]</div>';
+                self.GoToNextFilePosition(next_tag_end);
                 return self.headerses_garde[tag];
+            self.GoToNextFilePosition(next_tag_end);
                 
     def IncreaseHeaderLevel(self, target_header_level):
         while self.header_level < target_header_level:
