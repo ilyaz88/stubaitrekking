@@ -27,6 +27,10 @@ p {
     /*text-indent: 1.5em;*/
 }
 
+p.tight_column {
+    text-align: left;
+}
+
 p.note {
     margin: 25 px;
     font-style: italic;
