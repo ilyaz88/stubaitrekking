@@ -1,0 +1,15 @@
+﻿table.diary_bar {    
+    width: 100%;
+    border-style: none;
+}
+
+td.diary_bar, td.selected {
+    text-align: center;
+    border-style: none;
+    font-size: medium;
+}
+
+td.selected {
+    background-color: #20b2aa;
+    color: white;
+}

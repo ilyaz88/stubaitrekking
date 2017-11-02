@@ -1,53 +1,47 @@
 ﻿from makeindex import MakeIndex
 from search4tag import search4tag
+from serv import *
+from DiaryMark import DiaryMark
 
-def ExtractMenuItem(sourse_name):
-    p = open(sourse_name, 'r', encoding = 'utf-8');
-    text = p.read();
-    (status, _, _, menu_name) = search4tag(text, '!menu_item', '!/menu_item').FindTagPair();    
-    p.close();
-    return status, menu_name
-    
-def ExtractPageInfo(sourse_name, top_link = False):
-    p = open(sourse_name, 'r', encoding = 'utf-8');
-    text = MakeIndex(p.read(), top_link);
-    (_, _, _, title) = search4tag(text, 'title', '/title').FindTagPair();
-    (_, _, _, body) = search4tag(text, 'body', '/body').FindTagPair();    
-    p.close();
-    return title, body
-    
-def TagSubstitute(text, tag, inserted_text):    
-    tag_begin_position = text.find('<' + tag);
-    if tag_begin_position < 0:
-        return text + '';
-    tag_end_position = text.find('>', tag_begin_position);
-    if tag_end_position < 0:
-        return text[:tag_begin_position] + inserted_text;
-    return text[:tag_begin_position] + inserted_text + text[tag_end_position + 1:];
+copyright = '&copy; stubaitrekking.ru, 2017 г., mail to <a href = "mailto:stubaitrekking@yandex.ru">stubaitrekking@yandex.ru</a>';
+        
+def TmpSave(text, fname = None):
+    if fname is None:
+        fname = 'tmp';
+    fid = open(fname, 'w', encoding = 'utf-8');
+    fid.write(text);
+    fid.close();
 
-def WebpageNameGenerator(name):
-    return name + '.browser.html';
-    
-def SourseNameGenerator(name):
-    return name + '.html';
-    
-def PrintNameGenerator(name):
-    return name + '.printer.html';
+intro_text, diary_index_prototype_name, chapters_texts, chapters_file_names = DiaryMark();
 
-def DrawActiveMenuItem(menu_index):
-    return '<div class = \'selected_menu_item\'>%s</div>\n'%(menu_items[menu_index][0]);
+menu = [[diary_index_prototype_name], ['stubai'], ['verona'], ['route', 'path_classification', 'signalgipfel', 'gamsspitzl',  'seescharte', 'beiljoch', 'grosser'], ['tirol_transport', 'transport', 'passage'], ['proviant', 'proviant_info', 'daily_menue', 'recipe'], ['equipment', 'gas'], ['money'], ['groupe'], ['links']];
+menu_items = [];
 
-def DrawActiveSubmenuItem(menu_index, submenu_index):
-    return '<div class = \'selected_submenu_item\'>%s</div>\n'%(menu_items[menu_index][submenu_index]);
-    
+TmpSave(intro_text, SourseNameGenerator(diary_index_prototype_name));
+
 def DrawMenuItem(menu_index):
     return '<div class = \'menu_item\'><a class = "item" href = \'%s\'>%s</a></div>\n'%(WebpageNameGenerator(menu[menu_index][0]), menu_items[menu_index][0]);
     
 def DrawSubmenuItem(menu_index, submenu_index):
     return '<div class = \'submenu_item\'><a class = "item" href = \'%s\'>%s</a></div>\n'%(WebpageNameGenerator(menu[menu_index][submenu_index]), menu_items[menu_index][submenu_index]);
+    
+def DrawActiveSubmenuItem(menu_index, submenu_index):
+    return '<div class = \'selected_submenu_item\'>%s</div>\n'%(menu_items[menu_index][submenu_index]);
+
+def DrawActiveMenuItem(menu_index):
+    return '<div class = \'selected_menu_item\'>%s</div>\n'%(menu_items[menu_index][0]);
 
 def PrintWersionLinkGenerator(print_version_name):
     return '[<a href = "%s">Версия для печати</a>]'%(print_version_name)
+
+for menu_index in range(0, len(menu)):
+    menu_items.append([]);
+    for sub_menu_index in range(0, len(menu[menu_index])):
+        sourse_name = SourseNameGenerator(menu[menu_index][sub_menu_index]);
+        status, menu_name = ExtractMenuItem(sourse_name);
+        if status < 0:
+            print('i can\'t find menu item name in %s'%sourse_name)
+        menu_items[menu_index].append(menu_name);
 
 def GenerateMenu(active_menu_indexes):
     text = '';
@@ -76,26 +70,8 @@ def GenerateMenu(active_menu_indexes):
         text = text + DrawSubmenuItem(active_menu_index, sub_menu_index);
     for menu_index in range(active_menu_index+1, len(menu)):
         text = text + DrawMenuItem(menu_index);
-    return text;    
+    return text; 
 
-menu = [['diary'], ['stubai'], ['verona'], ['route', 'path_classification', 'signalgipfel', 'gamsspitzl',  'seescharte', 'beiljoch', 'grosser'], ['tirol_transport', 'transport', 'passage'], ['proviant', 'proviant_info', 'daily_menue', 'recipe'], ['equipment', 'gas'], ['money'], ['groupe'], ['links']];
-menu_items = [];
-
-for menu_index in range(0, len(menu)):
-    menu_items.append([]);
-    for sub_menu_index in range(0, len(menu[menu_index])):
-        sourse_name = SourseNameGenerator(menu[menu_index][sub_menu_index]);
-        status, menu_name = ExtractMenuItem(sourse_name);
-        if status < 0:
-            print('i can\'t find menu item name in %s'%sourse_name)
-        menu_items[menu_index].append(menu_name);
-
-copyright = '&copy; stubaitrekking.ru, 2017 г., mail to <a href = "mailto:stubaitrekking@yandex.ru">stubaitrekking@yandex.ru</a>';
-
-p = open('pattern.browser.html', 'r', encoding = 'utf-8');
-pattern = p.read();
-p.close();
-        
 def PageProcess(pattern_name, sourse_name, page_name, print_name = '', menu_indexes = [-1, -1]):
     p = open(pattern_name, 'r', encoding = 'utf-8');
     pattern = p.read();
@@ -111,13 +87,20 @@ def PageProcess(pattern_name, sourse_name, page_name, print_name = '', menu_inde
     p.write(resulted_text)
     p.close();
 
-
-for menu_index in range(0, len(menu)):    
+for menu_index in range(1, len(menu)):    
     for sub_menu_index in range(0, len(menu[menu_index])):
         name = menu[menu_index][sub_menu_index];
         print('%s processing...'%name)
         PageProcess('pattern.browser.html', SourseNameGenerator(name), WebpageNameGenerator(name), PrintNameGenerator(name), [menu_index, sub_menu_index]);
         PageProcess('pattern.printer.html', SourseNameGenerator(name), PrintNameGenerator(name), '', [menu_index, sub_menu_index]);
         print('%s processed'%name)
+  
 
 PageProcess('pattern.index.html', 'protoindex.html', 'index.html');
+
+PageProcess('pattern.diary.html', SourseNameGenerator(diary_index_prototype_name), WebpageNameGenerator(diary_index_prototype_name), PrintNameGenerator(diary_index_prototype_name), [0, 0]);
+PageProcess('pattern.printer.html', SourseNameGenerator('diary'), PrintNameGenerator(diary_index_prototype_name), '', [0, 0]);
+
+for diary_chapter_index in range(len(chapters_file_names)):
+    TmpSave(chapters_texts[diary_chapter_index]);
+    PageProcess('pattern.diary.html', 'tmp', chapters_file_names[diary_chapter_index], PrintNameGenerator(diary_index_prototype_name), [0, 0]);
