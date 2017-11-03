@@ -10,20 +10,20 @@ class PhotoPageGenerate:
 </div>
 """
         self.tray_pattern = """
-<div style = "height: 66px; margin-top:10px;">
+<div style = "height: 58px; margin-top:10px;">
 %s
 </div>
 """
         self.tray_elemnt_pattern = """
 <div style = "margin-left:%s; float: left;">
 <a href = "%s">
-<img src = "%s" width = 88px height = 66px>
+<img src = "%s" width = 88px height = 58px>
 </a>
 </div>
 """
         self.active_tray_element_pattern = """
 <div style = "margin-left: %s; float: left;">
-<img src = "%s" width = 88px height = 66px>
+<img src = "%s" width = 88px height = 58px>
 </div>
 """
         self.pict_list = pict_list;
